@@ -26,7 +26,6 @@ $teams = array(
 	'chi' => array('Tuevo Teravainen')
 	);
 
-
 $output = new NHL_Games();
 $output->teams = $teams;
 $output->compute($start, $end);
