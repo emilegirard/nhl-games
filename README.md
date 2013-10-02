@@ -25,6 +25,14 @@ Finally you instantiate the class to fetch the number of games your players will
 	//display results
 	print_r( $output->games_per_players_in_interval );
 
+This will return :
+
+	array(
+		'P.K. Subban (MTL)'      => 3,
+		'Carey Price (MTL)'      => 3,
+		'Patrice Bergeron (BOS)' => 1
+	);
+
 ## Working Demo ##
 
 See http://nhloracle.com/nhl-games/ for a working example.
