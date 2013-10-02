@@ -38,3 +38,25 @@ function nhl_teams_array()
 	}
 	return $out;
 }
+
+function list_team_games($games, $team)
+{
+	$out = array();
+	foreach($games as $i=>$list) {
+		foreach($list as $i=>$game) {
+			if($game['visitor'] == $team)
+				$out[] = '@ '.$game['home'];
+			else if($game['home'] == $team)
+				$out[] = 'vs '.$game['visitor'];
+		}
+	}
+	return $out;
+}
+
+function _e_list_team_games($games, $team)
+{
+	$arr = list_team_games($games, $team);
+	foreach($arr as $i=>$game) :
+		echo '<span class="game">' . $game . '</span>';
+	endforeach;
+}

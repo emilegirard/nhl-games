@@ -46,6 +46,12 @@ $output->compute($start, $end);
 	<script>
 	  $(function() {
 	    $( ".datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+
+	    $('a.view').click(function() {
+	    	$(this).parent().parent().find('.gamelist').css({display:'inline-block'});
+	    	$(this).css({visibility:'hidden'});
+	    	return false;
+	    })
 	  });
 	</script>
 
@@ -88,11 +94,39 @@ $output->compute($start, $end);
 		ul.players li.odd {
 			background-color:#efefef;
 		}
+		ul.players li span.game {
+			font-size:70%;
+			background-color:#efefef;
+			display:inline-block;
+			padding:3px 6px;
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+			-o-border-radius:5px;
+			border-radius:5px;
+			margin-right:8px;
+			border:1px solid #ccc;
+		}
+		ul.players li.odd span.game {
+			background-color:#fff;
+			border:1px solid #ccc;
+		}
+
+		span.gamelist {
+			display:none;
+		}
 
 	ul.players li .nb {
 		float:right;
 		font-weight:bold;
-	}
+		}
+		ul.players li .nb a.view {
+			color:#ccc;
+			margin:0 3px;
+			position:relative;
+			top:-5px;
+			right:-5px;
+		}
+
 </style>
 <body>
 	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
@@ -107,7 +141,11 @@ $output->compute($start, $end);
 	$i=1; foreach($output->games_per_players_in_interval as $player=>$nb) :
 		echo '<li class="' . (($i%2 === 0) ? 'odd' : '') . '">';
 		echo '<span class="name">' . $player . '</span>';
-		echo '<span class="nb">' . $nb .'</span>';
+		$team = strtolower(preg_replace('/.*\(([^\)]+)\).*/is', '\\1', $player));
+		echo '<span class="gamelist">';
+		_e_list_team_games($output->games_in_interval, $team);
+		echo '</span>';
+		echo '<span class="nb">' . $nb .'<a href="#" class="view">?</a></span>';
 		echo '</li>';
 		$i++;
 	endforeach;
