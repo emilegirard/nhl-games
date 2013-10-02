@@ -5,7 +5,6 @@ include('includes/config.php');
 $start 	= (isset($_GET['start'])) ? $_GET['start'] : date('Y-m-d');
 $end 	= (isset($_GET['end'])) ? $_GET['end'] : date('Y-m-d', time() + 60*60*24*7);
 
-
 $teams = array(
 	'tb' => array('Steven Stamkos', 'Victor Hedman'),
 	'la' => array('Anze Kopitar', 'Slava Voynov', 'Drew Doughty'),
