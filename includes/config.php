@@ -1,7 +1,7 @@
 <?php
 
 //extand memory limit
-ini_set('memory_limit','64M');
+ini_set('memory_limit','256M');
 
 //load functions
 include('functions.php');
