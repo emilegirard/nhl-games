@@ -129,7 +129,7 @@ $output->compute($start, $end);
 
 </style>
 <body>
-	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	<a href="https://github.com/emilegirard/nhl-games"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 	<form action="index.php" method="get">
 		<h1>Nb of games played</h1>
 		<h2>between <input name="start" class="datepicker" value="<?=$start;?>" /></span> and <input class="datepicker" name="end" value="<?=$end;?>" /> <input type="submit" value="GO &raquo;" /></h2>
