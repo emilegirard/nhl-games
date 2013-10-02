@@ -2,14 +2,14 @@
 
 include('includes/config.php');
 
-$start = (isset($_GET['start'])) ? $_GET['start'] : date('Y-m-d');
-$end = (isset($_GET['end'])) ? $_GET['end'] : date('Y-m-d', time() + 60*60*24*7);
+$start 	= (isset($_GET['start'])) ? $_GET['start'] : date('Y-m-d');
+$end 	= (isset($_GET['end'])) ? $_GET['end'] : date('Y-m-d', time() + 60*60*24*7);
 
 
 $teams = array(
 	'tb' => array('Steven Stamkos', 'Victor Hedman'),
 	'la' => array('Anze Kopitar', 'Slava Voynov', 'Drew Doughty'), 
-	'phi' => array('Claude Giroux'),
+	'phi' => array('Claude Giroux', 'Mark Streit'),
 	'car' => array('Alexander Semin'),
 	'edm' => array('Nail Yakupov', 'Jordan Eberle'),
 	'col' => array('Gabriel Landeskog'),
@@ -18,7 +18,7 @@ $teams = array(
 	'nyr' => array('Derek Stepan', 'Ryan McDonagh'),
 	'pho' => array('Mike Ribeiro'),
 	'nas' => array('Shea Weber'),
-	'nyi' => array('Mark Streit', 'Ryan Strome', 'Kyle Okposo'),
+	'nyi' => array('Ryan Strome', 'Kyle Okposo'),
 	'buf' => array('G- Ryan Miller'),
 	'ott' => array('G- Craig Anderson'),
 	'bos' => array('Dougie Hamilton', 'Milan Lucic'),
@@ -88,8 +88,7 @@ $output->compute($start, $end);
 	}
 </style>
 <body>
-	<a href="https://github.com/emilegirard/nhl-games/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 	<form action="index.php" method="get">
 		<h1>Nb of games played between <input name="start" class="datepicker" value="<?=$start;?>" /></span> and <input class="datepicker" name="end" value="<?=$end;?>" /> <input type="submit" value="GO" /></h1>
 	</form>
