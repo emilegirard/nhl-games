@@ -28,7 +28,7 @@ Finally you instantiate the class to fetch the number of games your players will
 This will return :
 
 	array(
-		'P.K. Subban (MTL)'      => 3,
+		'P.K. Subban (MTL)'      => 3,   //he will play 3 games between 2013-10-01 and 2013-10-07
 		'Carey Price (MTL)'      => 3,
 		'Patrice Bergeron (BOS)' => 1
 	);
