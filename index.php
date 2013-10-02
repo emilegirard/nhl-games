@@ -8,7 +8,7 @@ $end 	= (isset($_GET['end'])) ? $_GET['end'] : date('Y-m-d', time() + 60*60*24*7
 
 $teams = array(
 	'tb' => array('Steven Stamkos', 'Victor Hedman'),
-	'la' => array('Anze Kopitar', 'Slava Voynov', 'Drew Doughty'), 
+	'la' => array('Anze Kopitar', 'Slava Voynov', 'Drew Doughty'),
 	'phi' => array('Claude Giroux', 'Mark Streit'),
 	'car' => array('Alexander Semin'),
 	'edm' => array('Nail Yakupov', 'Jordan Eberle'),
@@ -42,7 +42,7 @@ $output->compute($start, $end);
 	<link rel="stylesheet" href='assets/css/dark-hive/jquery-ui-1.10.3.custom.min.css' type='text/css' media='all' />
 
 
-	
+
 	<script>
 	  $(function() {
 	    $( ".datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
@@ -53,16 +53,23 @@ $output->compute($start, $end);
 <style type="text/css">
 	body {
 		background-color:#efefef;
-		font-size:120%;
+		font-size:100%;
 		font-family:'courier new', courier, arial;
 		width:100%;
 	}
 
 	h1 {
+		font-size:22pt;
+		text-align:center;
+		margin:20px 0 0 0;
+		padding:0px;
+	}
+
+	h2 {
 		font-size:16pt;
 		text-align:center;
-		margin:20px 0;
-		padding:20px;
+		margin:0 0 20px 0;
+		padding:0px;
 	}
 
 	ul.players {
@@ -90,7 +97,8 @@ $output->compute($start, $end);
 <body>
 	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 	<form action="index.php" method="get">
-		<h1>Nb of games played between <input name="start" class="datepicker" value="<?=$start;?>" /></span> and <input class="datepicker" name="end" value="<?=$end;?>" /> <input type="submit" value="GO" /></h1>
+		<h1>Nb of games played</h1>
+		<h2>between <input name="start" class="datepicker" value="<?=$start;?>" /></span> and <input class="datepicker" name="end" value="<?=$end;?>" /> <input type="submit" value="GO &raquo;" /></h2>
 	</form>
 
 	<?php
