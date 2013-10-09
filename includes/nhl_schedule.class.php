@@ -61,9 +61,6 @@ class NHL_Schedule {
     	preg_match_all('#<tr[^>]*>(.*?)</tr>#si' , $html, $lines);
     	$lines = $lines[0];
 
-    	//remove the 3 first rows
-    	$lines = array_slice($lines, 3);
-
     	//generate array
     	$schedule = array();
     	foreach($lines as $i=>$line) :
