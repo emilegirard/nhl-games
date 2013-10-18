@@ -7,12 +7,15 @@ ini_set('memory_limit','256M');
 include('functions.php');
 
 //load classes
-include('nhl-games.class.php');
+include('nhl_games.class.php');
 include('nhl_schedule.class.php');
 include('simple-html-dom.class.php');
 
 //define constants
-define('PATH', 			dirname(dirname (__FILE__)) );
-define('PATH_CACHE', 	PATH . '/cache');
-define('PATH_INC',		PATH . '/includes');
-define('CACHE_EXPIRE',	7*3600);
+define('NHL_GAMES_PATH', 			dirname(dirname (__FILE__)) );
+define('NHL_GAMES_PATH_CACHE', 		NHL_GAMES_PATH . '/cache');
+define('NHL_GAMES_PATH_INC',		NHL_GAMES_PATH . '/includes');
+
+define('NHL_SCHEDULE_PATH_CACHE', 		dirname(dirname (__FILE__)) . '/cache');
+define('NHL_SCHEDULE_CUR_SEASON', 		'2013-14');
+define('NHL_SCHEDULE_CACHE_EXPIRE',		365*3600); //1 year

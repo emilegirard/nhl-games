@@ -4,17 +4,42 @@ class NHL_Schedule {
 
 	public $games = array();
 
-	private $schedule_url 	= 'http://www.nhl.com/ice/schedulebyseason.htm?navid=nav-sch-sea';
-	private $cache_filename = 'schedule.html';
-
+	private $schedule_url 	    = 'http://www.nhl.com/ice/schedulebyseason.htm?navid=nav-sch-sea';
+    private $use_cache          = true;
+    private $cache_filename;
 
 	/**
 	 * Class constructor
 	*/
 	public function __construct()
 	{
-		$this->loadSchedule();
+		$this->cache_filename = 'nhl-schedule-' . NHL_SCHEDULE_CUR_SEASON . '.html';
+        $this->loadSchedule();
+
 	}
+
+    /**
+     * magic method : GET
+     * @param varchar $property
+     */
+    public function __get($property)
+    {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
+
+    /**
+     * magic method : SET
+     * @param varchar $property
+     * @param varchar $value
+     */
+    public function __set($property, $value)
+    {
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
+    }
 
 	/**
 	 * load a schedule from cache, or if it is expired, generate a new one
@@ -22,10 +47,10 @@ class NHL_Schedule {
 	private function loadSchedule()
     {
     	//get schedule from cache
-    	$file = PATH_CACHE . '/' . $this->cache_filename;
+    	$file = NHL_SCHEDULE_PATH_CACHE . '/' . $this->cache_filename;
 
     	//cache is expired
-    	if( !file_exists($file) || (filemtime($file) + CACHE_EXPIRE) < time())
+    	if( !file_exists($file) || (filemtime($file) + NHL_SCHEDULE_CACHE_EXPIRE) < time() || $this->use_cache === false )
     	{
 	    	$content = $this->generateSchedule();
 
@@ -66,6 +91,8 @@ class NHL_Schedule {
     	foreach($lines as $i=>$line) :
     		$game = array();
     		$dom = str_get_html($line);
+            if(!is_object($line)) continue;
+
     		$date = strtotime($dom->find('div.skedStartDateLocal',0)->plaintext);
     		if($dom->find('.skedStartDateSite'))
     		{
@@ -79,7 +106,7 @@ class NHL_Schedule {
     	endforeach;
 
     	//save to cahe
-    	$file = PATH_CACHE . '/' . $this->cache_filename;
+    	$file = NHL_SCHEDULE_PATH_CACHE . '/' . $this->cache_filename;
 
 		if (!$handle = fopen($file, 'w+'))
 		{

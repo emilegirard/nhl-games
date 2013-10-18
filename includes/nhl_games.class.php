@@ -10,6 +10,9 @@ class NHL_Games
 	public $games_per_players_in_interval 	= array();
 
 	private $schedule 						= array();
+    private $start;
+    private $end;
+    private $use_cache                      = true;
 
 	private static $instance;
 
@@ -20,6 +23,10 @@ class NHL_Games
 	{
 		//save it for a call from outside
 		self::$instance =& $this;
+
+        $this->start = date('Y-m-d');
+        $this->end = date('Y-m-d', time() + 60*60*24*6);
+
 	}
 
 	/**
@@ -59,22 +66,19 @@ class NHL_Games
 	 * @param $min DATE period start (YY-mm-dd)
 	 * @param $max DATE period end (YY-mm-dd)
 	*/
-    public function compute($min = null, $max = null)
+    public function compute()
     {
     	//set the schedules array
     	$this->schedule = new NHL_Schedule();
 
+        //set the cache bool
+        $this->schedule->use_cache = $this->use_cache;
+
     	//format minimum date
-    	if($min != null)
-    		$min = strtotime($min . ' 00:00:00');
-    	else
-    		$min = strtotime(date('Y-m-d') . ' 00:00:00');
+    	$min = strtotime($this->min . ' 00:00:00');
 
     	//format maximum date
-    	if($max != null)
-    		$max = strtotime($max . ' 23:59:59');
-    	else
-    		$max = strtotime(date('Y-m-d') . ' 23:59:59');
+    	$max = strtotime($this->end . ' 23:59:59');
 
     	//compute games in interval
     	$games_in_interval = array();

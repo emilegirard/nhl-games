@@ -18,9 +18,11 @@ Then you set the time range
 
 Finally you instantiate the class to fetch the number of games your players will play during this period of time :
 
-	$output = new NHL_Games();
-	$output->teams = $teams;
-	$output->compute( $start, $end );
+	$output 		= new NHL_Games();
+	$output->teams 	= $teams;
+	$output->start	= $start;
+	$output->end	= $end;
+	$output->compute();
 
 	//display results
 	print_r( $output->games_per_players_in_interval );
