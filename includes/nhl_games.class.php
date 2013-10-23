@@ -75,7 +75,7 @@ class NHL_Games
         $this->schedule->use_cache = $this->use_cache;
 
     	//format minimum date
-    	$min = strtotime($this->min . ' 00:00:00');
+    	$min = strtotime($this->start . ' 00:00:00');
 
     	//format maximum date
     	$max = strtotime($this->end . ' 23:59:59');
