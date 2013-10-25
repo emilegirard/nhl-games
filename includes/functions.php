@@ -16,17 +16,18 @@ function city_to_abbr($team)
 	if($team == 'ny islanders') $ext = 'nyi';
 	if($team == 'ny rangers') $ext = 'nyr';
 	if($team == 'ny rangers') $ext = 'nyr';
-	if($team == 'florida') $ext = 'fla';
+	if($team == 'florida') $ext = 'flo';
 	if($team == 'san jose') $ext = 'sj';
 	if($team == 'tampa bay') $ext = 'tb';
+	if($team == 'phoenix') $ext = 'phx';
 	return $ext;
 }
 
 function nhl_teams()
 {
 	return array(
-		'ana', 'bos', 'buf', 'car','cgy', 'chi', 'col', 'clb', 'dal', 'det', 'edm', 'fla', 'la', 'min', 'mon',
-		'nas', 'njd', 'nyi', 'nyr', 'ott', 'phi', 'pho', 'pit', 'sj', 'stl', 'tb', 'tor', 'van', 'was', 'win'
+		'ana', 'bos', 'buf', 'car','cgy', 'chi', 'col', 'clb', 'dal', 'det', 'edm', 'flo', 'la', 'min', 'mon',
+		'nas', 'njd', 'nyi', 'nyr', 'ott', 'phi', 'phx', 'pit', 'sj', 'stl', 'tb', 'tor', 'van', 'was', 'win'
 	);
 }
 

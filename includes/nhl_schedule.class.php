@@ -85,24 +85,24 @@ class NHL_Schedule {
 
     	preg_match_all('#<tr[^>]*>(.*?)</tr>#si' , $html, $lines);
     	$lines = $lines[0];
-
     	//generate array
     	$schedule = array();
     	foreach($lines as $i=>$line) :
     		$game = array();
     		$dom = str_get_html($line);
-            if(!is_object($line)) continue;
-
-    		$date = strtotime($dom->find('div.skedStartDateLocal',0)->plaintext);
-    		if($dom->find('.skedStartDateSite'))
-    		{
-    			$game['home'] = utf8_decode($dom->find('.teamName', 1)->plaintext);
-    			$game['visitor'] = utf8_decode($dom->find('.teamName', 0)->plaintext);
-    			$game['info'] = $game['visitor'] . ' vs ' . $game['home'];
-    			$game['home'] = city_to_abbr($game['home']);
-    			$game['visitor'] = city_to_abbr($game['visitor']);
-    			$schedule[$date][] = $game;
-    		}
+            if(is_object($dom))
+            {
+                $date = strtotime(@$dom->find('div.skedStartDateLocal',0)->plaintext);
+                if(@$dom->find('.skedStartDateSite'))
+                {
+                    $game['home'] = utf8_decode($dom->find('.teamName', 1)->plaintext);
+                    $game['visitor'] = utf8_decode($dom->find('.teamName', 0)->plaintext);
+                    $game['info'] = $game['visitor'] . ' vs ' . $game['home'];
+                    $game['home'] = city_to_abbr($game['home']);
+                    $game['visitor'] = city_to_abbr($game['visitor']);
+                    $schedule[$date][] = $game;
+                }
+            }
     	endforeach;
 
     	//save to cahe

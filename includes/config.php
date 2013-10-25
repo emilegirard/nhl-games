@@ -7,9 +7,14 @@ ini_set('memory_limit','256M');
 include('functions.php');
 
 //load classes
-include('nhl_games.class.php');
-include('nhl_schedule.class.php');
-include('simple-html-dom.class.php');
+if(!class_exists('NHL_Games'))
+	include('nhl_games.class.php');
+
+if(!class_exists('NHL_Schedule'))
+	include('nhl_schedule.class.php');
+
+if(!class_exists('simple_html_dom_node'))
+	include('simple-html-dom.class.php');
 
 //define constants
 define('NHL_GAMES_PATH', 			dirname(dirname (__FILE__)) );
