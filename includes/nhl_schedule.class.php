@@ -121,4 +121,20 @@ class NHL_Schedule {
     	//output
     	return $schedule;
     }
+
+
+    public function schedule_by_date($min, $max, $team = '')
+    {
+        //compute games in interval
+        $games_in_interval = array();
+        foreach($this->games as $time=>$games) :
+            if($time >= $min && $time <= $max)
+            {
+                array_push($games_in_interval, $games);
+            }
+        endforeach;
+
+        return $games_in_interval[0];
+
+    }
 }
