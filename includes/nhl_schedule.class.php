@@ -6,6 +6,9 @@ class NHL_Schedule {
 
 	private $schedule_url 	    = 'http://www.nhl.com/ice/schedulebyseason.htm?navid=nav-sch-sea';
     private $use_cache          = true;
+    private $cache_path         = '';
+    private $cache_expire       = 0;
+
     private $cache_filename;
 
 	/**
@@ -14,8 +17,9 @@ class NHL_Schedule {
 	public function __construct()
 	{
 		$this->cache_filename = 'nhl-schedule-' . NHL_SCHEDULE_CUR_SEASON . '.html';
-        $this->loadSchedule();
 
+        $this->cache_path   = NHL_SCHEDULE_PATH_CACHE;
+        $this->cache_expire = NHL_SCHEDULE_CACHE_EXPIRE;
 	}
 
     /**
@@ -41,16 +45,21 @@ class NHL_Schedule {
         }
     }
 
+    public function init()
+    {
+        $this->loadSchedule();
+    }
+
 	/**
 	 * load a schedule from cache, or if it is expired, generate a new one
 	*/
 	private function loadSchedule()
     {
     	//get schedule from cache
-    	$file = NHL_SCHEDULE_PATH_CACHE . '/' . $this->cache_filename;
+    	$file = $this->cache_path . '/' . $this->cache_filename;
 
     	//cache is expired
-    	if( !file_exists($file) || (filemtime($file) + NHL_SCHEDULE_CACHE_EXPIRE) < time() || $this->use_cache === false )
+    	if( !file_exists($file) || (filemtime($file) + $this->cache_expire) < time() || $this->use_cache === false )
     	{
 	    	$content = $this->generateSchedule();
 
@@ -106,7 +115,7 @@ class NHL_Schedule {
     	endforeach;
 
     	//save to cahe
-    	$file = NHL_SCHEDULE_PATH_CACHE . '/' . $this->cache_filename;
+    	$file = $this->cache_path . '/' . $this->cache_filename;
 
 		if (!$handle = fopen($file, 'w+'))
 		{

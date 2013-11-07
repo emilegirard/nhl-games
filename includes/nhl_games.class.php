@@ -70,6 +70,7 @@ class NHL_Games
     {
     	//set the schedules array
     	$this->schedule = new NHL_Schedule();
+        $this->schedule->init();
 
         //set the cache bool
         $this->schedule->use_cache = $this->use_cache;
