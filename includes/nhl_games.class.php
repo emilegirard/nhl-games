@@ -8,6 +8,9 @@ class NHL_Games
 	public $games_in_interval 				= array();
 	public $games_per_teams_in_interval 	= array();
 	public $games_per_players_in_interval 	= array();
+    public $Schedule;
+    public $cache_path                      = '';
+    public $cache_expire                    = '';
 
 	private $schedule 						= array();
     private $start;
@@ -74,6 +77,11 @@ class NHL_Games
 
         //set the cache bool
         $this->schedule->use_cache = $this->use_cache;
+        if($this->cache_path != '') $this->schedule->cache_path = $this->cache_path;
+        if($this->cache_expire != '') $this->schedule->cache_expire = $this->cache_expire;
+
+        $this->schedule->init();
+        $this->Schedule = $this->schedule;
 
     	//format minimum date
     	$min = strtotime($this->start . ' 00:00:00');
